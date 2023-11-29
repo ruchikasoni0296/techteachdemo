@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <section class="container" id="blogs">
+        <div class="">
+            <h2> User Registration </span></span></h2>
+        </div>
+        <div class="Registration-form">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>User Registration</title>
+
+
+
+            <form id="registrationForm" method="POST" action="{% url 'register_page' %}">
+                {% csrf_token %}
+                
+                
+                <label for="username">Username:</label>
+                {{ form.username }}
+                <input type="text" id="username" name="username" required >
+
+                <label for="email">Email:</label>
+                {{ form.email }}
+                <input type="email" id="email" name="email" required >
+
+                <label for="firstname">First name:</label>
+                {{ form.firstname }}
+                <input type="text" id="firstname" name="firstname" required >
+
+                <label for="lastname">Last Name:</label>
+                {{ form.lastname }}
+                <input type="text" id="lastName" name="lastname" required >
+
+                <label for="Gender">Gender:</label>
+                {{ form.gender }}
+                <select id="gender" name="gender" style="width: 250px;height: 40px;">
+                    <option value="" selected disabled>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    </select>
+                <br><br>
+                <!--<input type="text" id="Gender" name="Gender" required>-->
+
+                <label for="Packages">Packages:</label>
+                {{ form.package }}
+                <select id="Packages" name="Packages" style="width: 250px;height: 40px;">
+                    <option value="" selected disabled>Select Package</option>
+                    <option value="C++-for-beginners">C++ Programming for Beginners</option>
+                    <option value="Java-for-beginners">Java Programming for Beginners</option>
+                    <option value="Python-for-beginners">Python Programming for Beginners</option>
+                    <option value="object-oriented">Object Oriented Programming(C++, Python Programming)</option>
+                    <option value="ultimate-coder">Ultimate Coder(C++, Java Programming)</option>
+                    <option value="ultimate-innovator">Ultimate Innovator(C++, Python, Java Programming)</option>
+                    </select>
+                <!--<input type="text" id="Packages" name="Packages" required>-->
+
+                <br><br>
+                <button type="submit" >Proceed to Payment</button>
+            </form>
+
+        
+       
+        </div>
+    </section>
+</body>
+</html>

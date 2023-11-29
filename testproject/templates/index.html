@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTeach</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to handle the registration for different programs
+            window.registerForProgram = function (program) {
+                // You can implement the registration logic here
+                console.log('Registered for program:', program);
+            };
+
+            // Function to handle the payment success
+            window.paymentSuccess = function (method) {
+                // You can implement the payment success logic here
+                console.log('Payment success with method:', method);
+                document.getElementById('paymentSuccessMessage').style.display = 'block';
+            };
+            function validateForm() {
+                const gender = document.querySelector('.gender').value.trim();
+                const packages = document.querySelector('.packages').value.trim();
+
+                // Reset previous error messages
+                document.querySelectorAll('.star').forEach(span => {
+                    span.textContent = '';
+                });
+
+                let isValid = true;
+
+                // Validate Gender
+                if (!gender) {
+                    document.querySelector('.gender + .star').textContent = 'First Name is required.';
+                    isValid = false;
+                }
+
+                // Validate Packages
+                if (!packages) {
+                    document.querySelector('.packages + .star').textContent = 'Last Name is required.';
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+        });
+    </script>
+    <link rel="icon" type="image/png" href="/static/logo.png">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/fontawesome.min.css">
+</head>
+
+
+<body class="main-content">
+    <header class="container header active" id="home">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+              {% if not user.is_authenticated %}
+                <a class="signInBtn" href="login_page">
+                    <i class="fa fa-user"></i>
+                    &ensp;
+                    <span>Sign In</span>
+                </a>
+              {% else %}
+
+                <a class="signInBtn">
+                    <i class="fa fa-user-graduate"></i>
+                    &ensp;
+                    <span>{{user.first_name}} {{user.last_name}}</span>
+                    <p></p>
+                </a>
+              {% endif %}
+            </ul>
+        </div>
+
+        <div class="header-content">
+            <div class="left-header">
+                <div class="h-shape"></div>
+                <div class="image">
+                    <img src="static/hero.png" alt="">
+                </div>
+            </div>
+            <div class="right-header">
+                <h1 class="name">
+                    <span>Brain Train</span><br />
+                    Study Excellence
+                </h1>
+                <p>
+                    The ideal study place for your children.
+                </p>
+
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="container about" id="about">
+            <div class="main-title">
+                <h2>Packages </span></span></h2>
+            </div>
+            <div class="about-container">
+                <div class="left-about">
+                    <h4></h4>
+                    <p>
+                        We are now tutoring for 3 programming languages, C++ programming,
+                        Python and Java. We are providing different types of Packages
+                        who want to join for two or more tutoring classes.
+                        Stay tuned! We will be adding more classes soon. <br /> <br />
+                    </p>
+                    <div class="btn-con">
+
+                    </div>
+                </div>
+                <div class="right-about">
+                    <div class="about-item">
+                        <div class="abt-text" onclick="registerForProgram('C++-for-beginners')">
+                            <p class="middle-text">C++ Programming for Beginners</p><br>
+                            <p class="small-text">$140<br /></p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="abt-text" onclick="registerForProgram('Java-for-beginners')">
+                            <p class="middle-text">Java Programming for Beginners</p><br>
+                            <p class="small-text">$140<br /></p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="abt-text" onclick="registerForProgram('Python-for-beginners')">
+                            <p class="middle-text">Python Programming for Beginners</p><br>
+                            <p class="small-text">$140<br /></p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="abt-text" onclick="registerForProgram('object-oriented')">
+                            <p class="middle-text">Object Oriented Programming<br>(C++, Python Programming)</p>
+                            <br>
+                            <p class="small-text">$220<br /></p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="abt-text" onclick="registerForProgram('ultimate-coder')">
+                            <p class="middle-text">Ultimate Coder<br>(C++, Java Programming)</p>
+                            <br>
+                            <p class="small-text">$210<br /></p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="abt-text" onclick="registerForProgram('ultimate-innovator')">
+                            <p class="middle-text">Ultimate Innovator<br>(C, Python, Java Programming)</p>
+                            <br>
+                            <p class="small-text">$210<br /></p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="about-stats">
+                <h4 class="stat-title"></h4>
+                <div class="progress-bars">
+                </div>
+                <div class="contact-item">
+                    <div class="">
+                        <i class=""></i>
+                        <span></span>
+                    </div>
+                    <p>
+                        <span> </span>
+                    </p>
+                    <div class="progress-bar">
+
+                        <div class="">
+                            <p class="prog-text"></p>
+                            <div class="progress">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <p class="prog-title"> </p>
+                        <div class="">
+                            <p class="prog-text"></p>
+                            <div class="progress">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section class="container" id="portfolio">
+            <div class="main-title">
+                <h2>Payment</span><span class="bg-text"></span></h2>
+            </div>
+            <p class="port-text">
+                Please select the payment mode
+            </p>
+            <div class="portfolios">
+                <div id="paymentSuccessMessage">
+                    Successfully Paid!
+                </div>
+                <div>
+                    <div class="portfolio-item" onclick="paymentSuccess('Paypal')">
+                        <div class="image">
+                            <img src="static/paypal.png" alt="">
+                        </div>
+                        <div class="hover-items">
+                            <h3>Pay with Paypal</h3>
+                            <div class="icons">
+                                <!-- <a href="paymentok.html" target="_blank" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+
+                    </div>
+                </div>
+                <div>
+                    <div class="portfolio-item" onclick="paymentSuccess('Visa')">
+                        <div class="image">
+                            <img src="static/visa.png" alt="">
+                        </div>
+                        <div class="hover-items">
+                            <h3>Pay with Visa</h3>
+                            <div class="icons">
+                                <!-- <a href="paymentno.html" target="_blank" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <label for="visaPayment">Card Number</label>
+                        <input id="visaPayment" type="text" class="_input" />
+                        <br />
+                        <label for="visaAmount">Amount</label>
+                        <input id="visaAmount" type="text" class="_input" />
+                    </div>
+                </div>
+                <div>
+                    <div class="portfolio-item" onclick="paymentSuccess('Mastercard')">
+                        <div class="image">
+                            <img src="static/master.png" alt="">
+                        </div>
+                        <div class="hover-items">
+                            <h3>Pay with Mastercard</h3>
+                            <div class="icons">
+                                <!-- <a href="paymentok.html" target="_blank" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container" id="blogs">
+            <div class="">
+                <h2> User Registration </span></span></h2>
+            </div>
+            <div class="Registration-form">
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>User Registration</title>
+
+
+
+                <form id="registrationForm" method="POST" action="./register_page/">
+                    {% csrf_token %}
+                    
+                    
+                    <label for="username">Username:</label>
+                    {{ form.username }}
+                    <input type="text" id="username" name="username" required >
+
+                    <label for="email">Email:</label>
+                    {{ form.email }}
+                    <input type="email" id="email" name="email" required >
+
+                    <label for="firstname">First name:</label>
+                    {{ form.firstname }}
+                    <input type="text" id="firstname" name="firstname" required >
+
+                    <label for="lastname">Last Name:</label>
+                    {{ form.lastname }}
+                    <input type="text" id="lastName" name="lastname" required >
+
+                    <label for="Gender">Gender:</label>
+                    {{ form.gender }}
+                    <input type="text" id="gender" name="gender" required >
+
+                    <label for="Packages">Packages:</label>
+                    {{ form.package }}
+                    <input type="text" id="packages" name="packages" required >
+
+                    <br><br>
+                    <button type="submit" >Proceed to Payment</button>
+                </form>
+
+            
+           
+            </div>
+        </section>
+
+        <section class="container contact" id="contact">
+            <div class="contact-container">
+                <div class="main-title">
+                    <h2>Group Information </span></span></h2>
+                </div>
+                <div class="contact-content-con">
+                    <div class="left-contact">
+                        <h4>Humber College</h4>
+                        <p>
+                            Cloud Computing
+                        </p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fa fa-user-graduate"></i>
+                                    <span>Imrit Singh : N01522171</span>
+                                </div>
+                                <p>
+
+                                </p>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fa fa-user-graduate"></i>
+                                    <span>Ruchika Soni Dahuja : N01610736</span>
+                                </div>
+                                <p>
+                                    <span> </span>
+                                </p>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fa fa-user-graduate"></i>
+                                    <span>Safal Piya: N01526950</span>
+                                </div>
+                                <p>
+                                    <span> </span>
+                                </p>
+
+
+                            </div>
+                        </div>
+                        <div class="right-contact">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container contact" id="account_info">
+            <div class="contact-container">
+                <div class="main-title">
+                    <h2>Account Information </span></span></h2>
+                </div>
+                <div class="contact-content-con">
+                    <div class="left-contact">
+                        <h4>{{user.first_name}} {{user.last_name}}</h4>
+                        <p>
+
+                        </p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fa fa-user-graduate"></i>
+                                    <span>Username: {{user.username}}</span>
+                                </div>
+                                <p>
+
+                                </p>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fa fa-user-graduate"></i>
+                                    <span>E-mail Address: {{user.email}}</span>
+                                </div>
+                                <p>
+                                    <span> </span>
+                                </p>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fa fa-user-graduate"></i>
+                                    <span>Package: {{user.packages}}</span>
+                                </div>
+                                <p>
+                                    <span> </span>
+                                </p>
+
+
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fa fa-user-graduate"></i>
+                                    <span>Gender: {{user.gender}}</span>
+                                </div>
+                                <p>
+
+                                </p>
+                            </div>
+                            <a class="signInBtn" href="logout">
+                                <i class="fa fa-power-off"></i>
+                                &ensp;
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                        <div class="right-contact">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="controls">
+        <div class="control active-btn" data-id="home">
+            <i class="fa fa-home"></i>
+        </div>
+        <div class="control" data-id="about">
+            <i class="fas fa-list-ul"></i>
+
+        </div>
+        {% if user.is_authenticated %}
+        <div class="control" data-id="blogs" id="blogs-btn">
+            <i class="far fa-registered"></i>
+        </div>
+        {% endif %}
+        <!--<div class="control" data-id="portfolio">
+            <i class="fas fa-money-check-alt"></i>
+        </div>
+        -->
+        {% if user.is_authenticated %}
+        <div class="control" data-id="account_info">
+
+            <i class="fa fa-user"></i>
+
+        </div>
+        {% endif %}
+
+        <div class="control" data-id="contact">
+
+            <i class="fa fa-university"></i>
+
+        </div>
+    </div>
+
+    <i class="fa fa-adjust"></i>
+
+    <script src="static/js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <script>
+        function paymentSuccess(paymentMode) {
+            const payment = document.querySelector('.firstname').value.trim();
+            const lastname = document.querySelector('.lastname').value.trim();
+            const username = document.querySelector('.username').value.trim();
+            const email = document.querySelector('.email').value.trim();
+            const password = document.querySelector('.password').value;
+            const confirmPassword = document.querySelector('.confirmation').value;
+            console.log('Payment successful with ' + paymentMode);
+            // You can update the UI or perform additional actions
+            document.getElementById('paymentSuccessMessage').innerText = 'Successfully Paid with ' + paymentMode;
+        }
+    </script>
+    <link rel="icon" type="image/png" href="/static/logo.png">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/fontawesome.min.css">
+</head>
+
+<body class="main-content">
+    <header class="container header active" id="home">
+
+            <div class="main-title">
+                <h2>Payment</span><span class="bg-text"></span></h2>
+            </div>
+            <p class="port-text">
+                Please select the payment mode
+            </p>
+
+            <div class="portfolios">
+                <div id="paymentSuccessMessage">
+                    Successfully Paid!
+                    <br><br>
+                    <a class="signInBtn" href="home">
+                        <i class="fa fa-home"></i>
+                        &ensp;
+                        <span>Home</span>
+                    </a>
+                </div>
+
+                <div>
+
+                    <div class="portfolio-item" onclick="paymentSuccess('Paypal')">
+                        <div class="image">
+                            <img src="/static/paypal.png" alt="">
+                        </div>
+                        <div class="hover-items">
+                            <h3>Pay with Paypal</h3>
+                            <div class="icons">
+                                <!-- <a href="paymentok.html" target="_blank" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        
+                    </div>
+                </div>
+                <div>
+                    <div class="portfolio-item" onclick="paymentSuccess('Visa')">
+                        <div class="image">
+                            <img src="/static/visa.png" alt="">
+                        </div>
+                        <div class="hover-items">
+                            <h3>Pay with Visa</h3>
+                            <div class="icons">
+                                <!-- <a href="paymentno.html" target="_blank" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <label for="visaPayment" name="card-number">Card Number</label>
+                        <input id="visaPayment" type="text" class="_input" />
+                        <br />
+                        <label for="visaAmount" name="amount">Amount</label>
+                        <input id="visaAmount" type="text" class="_input" />
+                    </div>
+                </div>
+                <div>
+                    <div class="portfolio-item" onclick="paymentSuccess('Mastercard')">
+                        <div class="image">
+                            <img src="/static/master.png" alt="">
+                        </div>
+                        <div class="hover-items">
+                            <h3>Pay with Mastercard</h3>
+                            <div class="icons">
+                                <!-- <a href="paymentok.html" target="_blank" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        
+                    </div>
+                </div>
+
+            </div>
+            
+    </header>
+    <main>
+
+    </main>
+
+    <i class="fa fa-adjust"></i>
+    </div>
+    <script src="static/js/app.js"></script>
+
+</body>
+
+</html>

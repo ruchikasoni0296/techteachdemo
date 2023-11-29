@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const registerForm = document.getElementById('register-form');
+
+            registerForm.addEventListener('submit', function (event) {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                // Perform form validation
+                if (validateForm()) {
+                    // If validation passes, submit the form
+                    registerForm.submit();
+                }
+            });
+
+            function validateForm() {
+                const firstname = document.querySelector('.firstname').value.trim();
+                const lastname = document.querySelector('.lastname').value.trim();
+                const username = document.querySelector('.username').value.trim();
+                const email = document.querySelector('.email').value.trim();
+                const password = document.querySelector('.password').value;
+                const confirmPassword = document.querySelector('.confirmation').value;
+
+                // Reset previous error messages
+                document.querySelectorAll('.star').forEach(span => {
+                    span.textContent = '';
+                });
+
+                let isValid = true;
+
+                // Validate First Name
+                if (!firstname) {
+                    document.querySelector('.firstname + .star').textContent = 'First Name is required.';
+                    isValid = false;
+                }
+
+                // Validate Last Name
+                if (!lastname) {
+                    document.querySelector('.lastname + .star').textContent = 'Last Name is required.';
+                    isValid = false;
+                }
+
+                // Validate Username
+                if (!username) {
+                    document.querySelector('.username + .star').textContent = 'Username is required.';
+                    isValid = false;
+                }
+
+                // Validate Email
+                if (!email) {
+                    document.querySelector('.email + .star').textContent = 'Email is required.';
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    document.querySelector('.email + .star').textContent = 'Invalid email format.';
+                    isValid = false;
+                }
+
+                // Validate Password
+                if (!password) {
+                    document.querySelector('.password + .star').textContent = 'Password is required.';
+                    isValid = false;
+                }
+
+                // Validate Confirm Password
+                if (password !== confirmPassword) {
+                    document.querySelector('.confirmation + .star').textContent = 'Passwords do not match.';
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function isValidEmail(email) {
+                // Basic email format validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        });
+
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+<form action="{% url 'register_page' %}" method="post" id="register-form">
+    {% csrf_token %}
+    <h2>Register Here for TechTeach!</h2>
+    <div class="form-group">
+        <div class="form-row align-items-center">
+                <div class="col-sm-6 my-1">
+                    <label for="firstname">First Name *</label>
+                    <input class="form-control inp firstname" type="text" name="firstname" autocomplete="off" autofocus>
+                    <span class="star small"></span>
+                </div>
+                <div class="col-sm-6 my-1">
+                    <label for="lastname">Last Name *</label>
+                    <input class="form-control inp lastname" type="text" name="lastname" autocomplete="off">
+                    <span class="star small"></span>
+                </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="username">Username *</label>
+        <input class="form-control inp username" type="text" name="username" autocomplete="off">
+        <span class="star small">{{message}}</span>
+    </div>
+    <div class="form-group">
+        <label for="email">E-Mail *</label>
+        <input class="form-control inp email" type="email" name="email" autocomplete="off">
+        <span class="star small"></span>
+    </div>
+    <div class="form-group">
+        <label for="password">Password *</label>
+        <input class="form-control inp password" type="password" name="password" autocomplete="off">
+        <span class="star small"></span>
+    </div>
+    <div class="form-group">
+        <label for="confirmation">Confirm Password *</label>
+        <input class="form-control inp confirmation" type="password" name="confirmation" autocomplete="off">
+        <span class="star small"></span>
+    </div>
+
+    <center>
+        <input type="submit" value="Register" style="margin-top: 10px; width: 95%;"> <!-- disabled>-->
+    </center>
+        <div>
+        <center>
+            Already have an account?&nbsp;&nbsp;<a href="{% url 'login_page' %}">Log in</a>
+        </center>
+    </div><br><br>
+</form><br>
+
+
+    <!--<label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" id="confirm-password" name="confirm-password" required>
+
+    <div id="newuseradd" style="display: inline-block;">
+    <a href="index">Register</a>
+    </div>
+    <a> <button type="submit" href="index">Register</button>
+    </a>
+</form>-->
+
+</body>
+</html>
